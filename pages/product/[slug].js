@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-const Post = () => {
+const Post = (props) => {
+  const {removeCart,removeitem,addCart,total,cart} = props
   const router = useRouter();
   const { slug } = router.query;
   const [pin, getpin] = useState()
@@ -84,7 +85,7 @@ const Post = () => {
                     {status===true?<p>Product will be delivered</p>:<p>No availability in your region</p>}
                   </div>
 
-                  <button className="btn btn-dark mt-3">Add To Cart</button>
+                  <button className="btn btn-dark mt-3" onClick={()=>{addCart(slug,"tshirt",'xl',499,1,"white")}}>Add To Cart</button>
                 </div>
               </div>
             </div>

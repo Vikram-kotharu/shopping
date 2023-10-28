@@ -7,7 +7,7 @@ const Shirts = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-3 shirt mt-5">
-            <Link href='/product/12334'>
+            <Link href='/product/890'>
             <img
               src="https://m.media-amazon.com/images/I/618ULEergYL._AC_UL480_FMwebp_QL65_.jpg"
               height="280px"
