@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import {MdAccountCircle} from "react-icons/md";
 import Link from "next/link";
 const Nav = () => {
   return (
@@ -36,7 +37,8 @@ const Nav = () => {
               </Link>
             </div>
             <div className="navbar-nav bob1">
-              <Link href='/cart'><AiOutlineShoppingCart /></Link>
+              <Link  href={'/login'}><MdAccountCircle/></Link>
+              <Link  className="ms-3 ico" href='/cart'><AiOutlineShoppingCart /></Link>
               
               
               

@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }) {
     
     if(localStorage.getItem('cart') ){
       getcart(JSON.parse(localStorage.getItem('cart')))
+      gettotal(JSON.parse(localStorage.getItem('total')))
       
     }
     else{
@@ -29,6 +30,7 @@ export default function App({ Component, pageProps }) {
     }
     
     gettotal(sub)
+    localStorage.setItem('total',JSON.stringify(sub))
     
   }
   const addCart = (id,name,size,price,quantity,color) =>{
