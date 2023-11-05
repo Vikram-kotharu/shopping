@@ -70,6 +70,7 @@ const Checkout = (props) => {
                   <>
                   <h6>Product ID: {y}</h6>
                   <h6>Name: {cart[y].name}</h6>
+                  
                   <p>Price: {cart[y].price}</p>
                   <p>Quantity: {cart[y].quantity}</p>
                   </>
