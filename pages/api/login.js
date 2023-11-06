@@ -2,6 +2,8 @@ import user from "@/Models/user";
 import connect from "@/db/connet";
 const bcrypt = require("bcrypt");
 
+var jwt = require('jsonwebtoken');
+
 connect()
 
 
@@ -21,7 +23,8 @@ const login = async(req,res) =>{
         console.log(checking)
 
         if(checking ){
-            res.send({"success":"User is present"})
+            var token = jwt.sign({ email:data.email, password:check.password }, 'The-E-store',{expiresIn: "1d"});
+            res.send({"success":"User is present","token":token})
         }
         else{
             res.send({"error":"User is not present"})
@@ -33,3 +36,4 @@ const login = async(req,res) =>{
 }
 
 export default login
+
