@@ -1,17 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Cart from "./cart";
+import Head from "next/head";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Checkout = (props) => {
-  const { cart,total } = props;
+  const [address1, setaddress] = useState("");
+  const { cart, total } = props;
+  const notify = () => toast("Order Placed");
+  const orderfunction = async () => {
+    const y = localStorage.getItem("userID");
+    console.log(y);
+    let data = {
+      userId: y,
+      products: cart,
+      address: address1,
+      amount: total,
+      status: "pending",
+    };
+    console.log(data);
+    const resp = await fetch("http://localhost:3000/api/order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    const response = await resp.json();
+    if(response){
+      notify()
+    }
+    console.log(response);
+  };
   return (
     <>
+    <ToastContainer />
       <br />
       <div className="container">
+      
         <div className="row">
           <div className="d-flex flex-row justify-content-center">
             <div className="col-lg-7">
               <h4>1. Checkout</h4>
               <hr />
-              <form>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <div className="mb-3">
                   <label for="exampleInputEmail1" className="form-label">
                     Email address
@@ -44,6 +78,10 @@ const Checkout = (props) => {
                     cols="30"
                     rows="5"
                     placeholder="Enter your House address, Pincode, State, District"
+                    onChange={(e) => {
+                      setaddress(e.target.value);
+                    }}
+                    value={address1}
                   ></textarea>
                 </div>
                 <div className="d-flex flex-row mb-3">
@@ -57,7 +95,11 @@ const Checkout = (props) => {
                   </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={orderfunction}
+                >
                   Pay ₹{total}
                 </button>
               </form>
@@ -66,17 +108,17 @@ const Checkout = (props) => {
               <h6>Subtotal: {total}</h6>
               <hr />
               <div>
-                {Object.keys(cart).map((y)=> { return(
-                  <>
-                  <h6>Product ID: {y}</h6>
-                  <h6>Name: {cart[y].name}</h6>
-                  
-                  <p>Price: {cart[y].price}</p>
-                  <p>Quantity: {cart[y].quantity}</p>
-                  </>
-                  
+                {Object.keys(cart).map((y) => {
+                  return (
+                    <>
+                      <h6>Product ID: {y}</h6>
+                      <h6>Name: {cart[y].name}</h6>
 
-                )})}
+                      <p>Price: {cart[y].price}</p>
+                      <p>Quantity: {cart[y].quantity}</p>
+                    </>
+                  );
+                })}
               </div>
             </div>
           </div>

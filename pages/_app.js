@@ -1,18 +1,22 @@
 import "@/styles/globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import NextNProgress from 'nextjs-progressbar';
 import Nav from "@/components/nav";
 import { useState,useEffect } from "react";
 
 export default function App({ Component, pageProps }) {
   const [cart,getcart] = useState({})
   const [total,gettotal] = useState(0)
-  //const [sizes,getsizes] = useState({})
+  
+  
+
   useEffect(()=>{
+    
     
     if(localStorage.getItem('cart') ){
       getcart(JSON.parse(localStorage.getItem('cart')))
       gettotal(JSON.parse(localStorage.getItem('total')))
-      
+         
       
     }
     else{
@@ -88,6 +92,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
+    <NextNProgress height={4} color="#f00" />
       <Nav />
       <Component  cart={cart} total={total} removeCart={removeCart} removeitem={removeitem} addCart={addCart} {...pageProps} />
       

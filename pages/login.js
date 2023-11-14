@@ -32,6 +32,7 @@ const Login = () => {
       console.log("yess");
       notify();
     } else {
+      localStorage.setItem('userID', data1.id)
       localStorage.setItem('jwt',data1.token)
       notify1();
       setTimeout(() => {

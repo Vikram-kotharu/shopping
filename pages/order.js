@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Order = () => {
+  const [order,getorders] = useState([])
+  const gets = async() =>{
+    const resp = await fetch('http://localhost:3000/api/getorders')
+    const data = await resp.json()
+    console.log(data)
+    getorders(data)
+  }
+
+  useEffect(()=>{
+    gets()
+  },[])
+
   return (
     <>
       <br />
@@ -10,23 +22,20 @@ const Order = () => {
             <div className="col-lg-9 yoyo shadow p-5">
               <h4>Orders</h4>
               <hr />
-              <div className="mb-4">
+              {order.map((i)=>{return(<>
+                <div className="mb-4">
                 <div className="d-flex flex-row">
-                  <h5 className="text-secondary">#81456 </h5>
+                  <h5 className="text-secondary">#{i._id} </h5>
                   <p> - </p>
-                  <h5> Allen Solly T-shirt...</h5>
+                  {Object.keys(i.products).map((j)=>{return(<><h6>{i.products[j].name}..</h6></>)})}
+                  
                   <button className="btn btn-dark ms-auto">Track</button>
                 </div>
-                <span className="badge text-bg-warning">In - Progress</span>
+                <span className="badge text-bg-warning">{i.status}</span>
               </div>
+              </>)})}
+              
               <div>
-                <div className="d-flex flex-row">
-                  <h5 className="text-secondary">#81456 </h5>
-                  <p> - </p>
-                  <h5> Allen Solly T-shirt...</h5>
-                  <button className="btn btn-dark ms-auto">Track</button>
-                </div>
-                <span className="badge text-bg-warning">In - Progress</span>
               </div>
             </div>
           </div>

@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import {MdAccountCircle} from "react-icons/md";
+import { MdAccountCircle } from "react-icons/md";
 import Link from "next/link";
+import { useRouter } from "next/router";
 const Nav = () => {
+  const [token, settoken] = useState();
+  const router = useRouter();
+  useEffect(() => {
+    const data = localStorage.getItem("jwt");
+    settoken(data);
+  }, [router.query]);
+
+  const logout = () => {
+    localStorage.removeItem("jwt");
+    settoken();
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary shadow">
@@ -37,12 +51,31 @@ const Nav = () => {
               </Link>
             </div>
             <div className="navbar-nav bob1">
-              <Link  href={'/login'}><MdAccountCircle/></Link>
-              <Link  className="ms-3 ico" href='/cart'><AiOutlineShoppingCart /></Link>
-              
-              
-              
-              
+              {token ? (
+                <>
+                  <div className=" me-4">
+                    <Link href={"/order"}>
+                      <button className="btn btn-secondary " type="button">
+                        <MdAccountCircle />
+                      </button>
+                    </Link>
+                  </div>
+
+                  <button onClick={logout} className="btn btn-danger">
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link href={"/login"}>
+                    <button className="btn btn-dark">Login</button>
+                  </Link>
+                </>
+              )}
+
+              <Link className="ms-3 ico" href="/cart">
+                <AiOutlineShoppingCart />
+              </Link>
             </div>
           </div>
         </div>
