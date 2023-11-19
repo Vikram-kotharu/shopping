@@ -38,8 +38,8 @@ const Home = () => {
           </div>
           <div className="col-lg-3 shadow p-4 bob ms-5">
             <div className="d-flex flex-row">
-              <h5>Mugs</h5>
-              <img className="img1" src="coffee-cup.png" alt="tshirt" />
+              <h5>Shirt</h5>
+              <img className="img1" src="shirts.png" alt="tshirt" />
             </div>
             <span className="badge text-bg-danger">50% off!</span>
             <div className="mt-5">
@@ -52,8 +52,8 @@ const Home = () => {
           </div>
           <div className="col-lg-3 shadow p-4 bob mt-4">
             <div className="d-flex flex-row">
-              <h5>stickers</h5>
-              <img className="img1" src="sticker.png" alt="tshirt" />
+              <h5>Jeans</h5>
+              <img className="img1" src="jeans.png" alt="tshirt" />
             </div>
             <span className="badge text-bg-danger">50% off!</span>
             <div className="mt-5">

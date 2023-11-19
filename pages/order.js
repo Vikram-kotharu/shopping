@@ -5,8 +5,12 @@ const Order = () => {
   const gets = async() =>{
     const resp = await fetch('http://localhost:3000/api/getorders')
     const data = await resp.json()
+    let op = localStorage.getItem('userID')
+    console.log(op)
+    const data1 = data.filter((i)=>i.userId == op)
+    console.log(data1)
     console.log(data)
-    getorders(data)
+    getorders(data1)
   }
 
   useEffect(()=>{

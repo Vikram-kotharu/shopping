@@ -38,16 +38,16 @@ const Nav = () => {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
               <Link className="nav-link" href="/shirts">
-                Shirts
+                T-Shirts
               </Link>
               <Link className="nav-link" href="/hoodies">
                 Hoodies
               </Link>
               <Link className="nav-link" href="/cups">
-                Mugs
+                Shirts
               </Link>
               <Link className="nav-link" href="/stickers">
-                Stickers
+                Jeans
               </Link>
             </div>
             <div className="navbar-nav bob1">
