@@ -3,7 +3,7 @@ import Cart from "./cart";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import emailjs from '@emailjs/browser';
 const Checkout = (props) => {
   const [address1, setaddress] = useState("");
   const { cart, total } = props;
@@ -26,6 +26,7 @@ const Checkout = (props) => {
     });
     const response = await resp.json();
     if(response){
+      
       notify()
     }
     console.log(response);
